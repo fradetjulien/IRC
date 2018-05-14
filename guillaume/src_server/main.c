@@ -5,18 +5,6 @@
 ** 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/select.h>
-#include <sys/ioctl.h>
-#include <sys/socket.h>
-#include <sys/time.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <errno.h>
 #include "server.h"
 
 t_serv	*init_serv(int ac, char **av)
@@ -25,7 +13,9 @@ t_serv	*init_serv(int ac, char **av)
 
    if ((serv = malloc(sizeof(t_serv))) == NULL)
       return (NULL);
-   serv->port = atoi(av[1]);
+   serv->port = get_port(ac, av);
+   if (serv->port == -1)
+	   return (NULL);
    serv->s_in.sin_family = AF_INET;
    serv->s_in.sin_port = htons(serv->port);
    serv->s_in.sin_addr.s_addr = INADDR_ANY;

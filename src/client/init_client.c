@@ -9,5 +9,6 @@
 
 void		init_client(t_client *client)
 {
-
+	client.under_way = 1;
+	client.connected = 0;
 }

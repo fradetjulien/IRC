@@ -7,23 +7,21 @@
 
 #include "serveur.h"
 
-int		init_serveur(t_serveur *serveur)
+t_serveur		*init_serveur(int ac, char **av)
 {
-	serveur->protocol = getprotobyname("TCP");
-	if (serveur->protocol == NULL)
-		return (-1);
-	serveur->fd = socket(AF_INET, SOCK_STREAM, serveur->protocol->p_proto);
-	if (serveur->fd == -1)
-		return (-1);
-	serveur->serveur_addr.sin_family = AF_INET;
-	serveur->serveur_addr.sin_port = htons(serveur->port);
-	serveur->serveur_addr.s_addr = inet_addr(av[1]);
-	if (bind(serveur->fd, (const struct sockaddr *)&serveur->serveur_addr,
-		 sizeof(serveur->serveur_addr)) == -1)
-		return (-1);
-	if (listen(serveur->fd, 1024) == -1) {
-		close(serveur->fd);
-		return (-1);
-	}
-	return (0);
+	t_serveur	*serveur;
+
+	serveur = malloc(sizeof(t_serveur));
+	if (serveur == NULL)
+		return (NULL);
+	serveur->port = get_port(ac, av);
+	if (serveur->port == -1)
+		return (NULL);
+	serveur->s_in.sin_family = AF_INET;
+	serveur->s_in.sin_port = htons(serveur->port);
+	serveur->s_in.sin_addr.s_addr = INADDR_ANY;
+	serveur->statut = 1;
+	if ((handle_connection(serveur)) == 0)
+		return (NULL);
+	return (serveur);
 }

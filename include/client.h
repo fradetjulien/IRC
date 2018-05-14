@@ -13,6 +13,7 @@ typedef struct		s_client
 	int		port;
 	int		fd;
 	int		connected;
+	int		statut;
 	char		*IP;
 }			t_client;
 

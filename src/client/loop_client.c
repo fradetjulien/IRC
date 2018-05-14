@@ -9,5 +9,11 @@
 
 void		loop_client(t_client *client)
 {
-	
+	fd_set	read;
+	fd_set	write;
+
+	while (client.under_way == 1) {
+		
+
+	}
 }

@@ -10,14 +10,18 @@
 
 int			main(int ac, char **av)
 {
-	t_serveur	serveur;
+	t_serveur	*serveur;
 
-	serveur.port = get_port(ac, av);
-	if (serveur.port == -1) {
+	serveur = init_serveur(ac, av);
+	if (serveur == NULL) {
 		flag_help(av[0]);
+		return (1);
 	}
 	else {
-		init_serveur(&serveur);
+		run_processus(serveur);
 	}
+	if (close(serveur->fd) == -1)
+		return (-1);
+	free(serveur);
 	return (0);
 }

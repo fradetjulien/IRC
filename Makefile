@@ -13,8 +13,13 @@ DIR_CLIENT	= ./src/client
 
 DIR_COMMON	= ./src/common
 
-SRC_SERVEUR	= $(DIR_SERVEUR)/serveur.c	\
-		  $(DIR_SERVEUR)/get_port.c
+SRC_SERVEUR	= $(DIR_SERVEUR)/serveur.c		\
+		  $(DIR_SERVEUR)/get_port.c		\
+		  $(DIR_SERVEUR)/init_serveur.c		\
+		  $(DIR_SERVEUR)/run_processus.c	\
+		  $(DIR_SERVEUR)/handle_connection.c	\
+		  $(DIR_SERVEUR)/handle_packet.c	\
+		  $(DIR_SERVEUR)/handle_client.c
 
 SRC_CLIENT	= $(DIR_CLIENT)/client.c	\
 
