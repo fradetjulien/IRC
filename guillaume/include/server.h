@@ -8,19 +8,18 @@
 #ifndef CLIENT_H_
 # define CLIENT_H_
 
-# include <sys/types.h>
-# include <sys/socket.h>
-# include <sys/time.h>
-# include <netdb.h>
-# include <netinet/in.h>
-# include <arpa/inet.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <errno.h>
-# include <stdbool.h>
-# include "com.h"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <stdbool.h>
 
 # define MAX 1024
 # define BUFF 2048
@@ -44,9 +43,9 @@ struct s_serv
 	fd_set rset;
 };
 
-int client_process(t_serv *serv);
-int handle_packet(t_serv *serv);
-int run_process(t_serv *serv);
-int handle_connect(t_serv *serv);
+int	client_process(t_serv *serv);
+int	handle_packet(t_serv *serv);
+int	run_process(t_serv *serv);
+int	handle_connect(t_serv *serv);
 
 #endif	/* !CLIENT_H_ */

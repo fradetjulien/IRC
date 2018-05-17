@@ -6,10 +6,21 @@
 ##
 
 
-SRC_CTL	= main.c	\
-	  client.c	\
-	  utils.c	\
-	  struct.c
+SRC_CTL	= display_cmd.c		\
+	  client.c		\
+	  help_client.c		\
+	  init_client.c		\
+	  loop_client.c		\
+	  display_prompt.c	\
+	  fct_socket.c		\
+	  other_socket.c	\
+	  list_cmd.c		\
+	  parse_cmd.c		\
+	  send_message.c	\
+	  connection_server.c	\
+	  send_to_server.c	\
+	  quit_server.c
+	  
 
 SRC_SRV	= handle_client.c	\
 	  handle_connect.c	\
@@ -17,9 +28,17 @@ SRC_SRV	= handle_client.c	\
 	  main.c		\
 	  run_process.c
 
-OBJ_CTL	= $(addprefix src_client/, $(SRC_CTL:.c=.o))
+SRC_COM	= flag_help.c		\
+	  is_num.c		\
+	  my_epur_str.c		\
+	  my_str_to_wordtab.c	\
+	  get_next_line.c
 
-OBJ_SRV	= $(addprefix src_server/, $(SRC_SRV:.c=.o))
+OBJ_CTL	= $(addprefix src/src_client/, $(SRC_CTL:.c=.o))
+
+OBJ_SRV	= $(addprefix src/src_server/, $(SRC_SRV:.c=.o))
+
+OBJ_COM	= $(addprefix src/src_common/, $(SRC_COM:.c=.o))
 
 LDFLAGS = -lm -g
 
@@ -35,11 +54,11 @@ NAME_CTL	= client
 
 all:	$(NAME_SRV) $(NAME_CTL)
 
-$(NAME_CTL): $(OBJ_CTL)
-	$(CC) -o $(NAME_CTL) $(OBJ_CTL) $(LDFLAGS) $(CFLAGS)
+$(NAME_CTL): $(OBJ_CTL) $(OBJ_COM)
+	$(CC) -o $(NAME_CTL) $(OBJ_CTL) $(OBJ_COM) $(LDFLAGS) $(CFLAGS)
 
-$(NAME_SRV): $(OBJ_SRV)
-	$(CC) -o $(NAME_SRV) $(OBJ_SRV) $(LDFLAGS) $(CFLAGS)
+$(NAME_SRV): $(OBJ_SRV) $(OBJ_COM)
+	$(CC) -o $(NAME_SRV) $(OBJ_SRV) $(OBJ_COM) $(LDFLAGS) $(CFLAGS)
 
 clean:
 	$(RM) $(OBJ_CTL)
@@ -48,6 +67,7 @@ clean:
 fclean:
 	$(RM) $(OBJ_CTL)
 	$(RM) $(OBJ_SRV)
+	$(RM) $(OBJ_COM)
 	$(RM) $(NAME_CTL)
 	$(RM) $(NAME_SRV)
 

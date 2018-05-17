@@ -13,7 +13,7 @@ t_serv	*init_serv(int ac, char **av)
 
    if ((serv = malloc(sizeof(t_serv))) == NULL)
       return (NULL);
-   serv->port = get_port(ac, av);
+   serv->port = atoi(av[1]);
    if (serv->port == -1)
 	   return (NULL);
    serv->s_in.sin_family = AF_INET;
