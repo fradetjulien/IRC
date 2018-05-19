@@ -17,6 +17,16 @@
 # define READ_SIZE (128)
 #endif /* !READ_SIZE */
 
+# define BUFFERSIZE 512
+
+typedef struct	s_buffer
+{
+	unsigned int	size;
+	unsigned int	begin;
+	unsigned int	end;
+	char		*circular_buffer;
+}		t_buffer;
+
 int		is_num(char *port);
 char		*get_next_line(const int fd);
 char		*my_epur_str(char *str);

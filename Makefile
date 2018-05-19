@@ -20,7 +20,6 @@ SRC_CTL	= display_cmd.c		\
 	  connection_server.c	\
 	  send_to_server.c	\
 	  quit_server.c
-	  
 
 SRC_SRV	= handle_client.c	\
 	  handle_connect.c	\
@@ -32,7 +31,8 @@ SRC_COM	= flag_help.c		\
 	  is_num.c		\
 	  my_epur_str.c		\
 	  my_str_to_wordtab.c	\
-	  get_next_line.c
+	  get_next_line.c	\
+	  create_buffer.c
 
 OBJ_CTL	= $(addprefix src/src_client/, $(SRC_CTL:.c=.o))
 
