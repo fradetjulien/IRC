@@ -48,7 +48,7 @@ int			connect_socket(t_client *client);
 int			connection_server(t_client *client, char **cmd, t_buffer *buffer);
 int			quit_server(t_client *client, char **cmd, t_buffer *buffer);
 int			send_to_server(t_client *client, t_buffer *buffer);
-int			send_message(char **cmd, t_client *client);
+int			send_message(t_client *client, t_buffer *circular_buffer);
 t_client		*init_client(t_client *client);
 
 #endif /* !CLIENT_H_ */

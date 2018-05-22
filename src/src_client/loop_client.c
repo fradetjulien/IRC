@@ -68,7 +68,7 @@ int			loop_client(t_client *client)
 		if (cmd[0][0] == '/')
 			parse_cmd(cmd, client, circular_buffer);
 		else
-			send_message(cmd, client);
+			send_message(client, circular_buffer);
 	}
 	return (0);
 }
