@@ -6,8 +6,10 @@
 */
 
 #include "client.h"
+#include "common.h"
 
-int		send_to_server(t_client *client, char **cmd)
+int		send_to_server(t_client *client, t_buffer *buffer)
 {
+	write_into_buffer(buffer, client->cmd);
 	return (0);
 }

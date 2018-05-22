@@ -32,7 +32,8 @@ SRC_COM	= flag_help.c		\
 	  my_epur_str.c		\
 	  my_str_to_wordtab.c	\
 	  get_next_line.c	\
-	  create_buffer.c
+	  create_buffer.c	\
+	  write_into_buffer.c
 
 OBJ_CTL	= $(addprefix src/src_client/, $(SRC_CTL:.c=.o))
 

@@ -6,8 +6,9 @@
 */
 
 #include "client.h"
+#include "common.h"
 
-int		connection_server(t_client *client, char **cmd)
+int		connection_server(t_client *client, char **cmd, t_buffer *buffer)
 {
 	int	port = atoi(cmd[1]);
 

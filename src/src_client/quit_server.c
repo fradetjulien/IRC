@@ -6,8 +6,12 @@
 */
 
 #include "client.h"
+#include "common.h"
 
-int		quit_server(t_client *client, char **cmd)
+int		quit_server(t_client *client, char **cmd, t_buffer *buffer)
 {
+	if ((close(client->fd)) == -1) {
+		return (-1);
+	}
 	return (0);
 }

@@ -21,6 +21,7 @@
 #include <string.h>
 #include <errno.h>
 #include <stdio.h>
+#include "common.h"
 
 typedef struct			s_client
 {
@@ -31,6 +32,7 @@ typedef struct			s_client
 	int			port;
 	int			fd;
 	char			*IP;
+	char			*cmd;
 }				t_client;
 
 void			display_cmd();
@@ -38,14 +40,14 @@ void			display_prompt();
 void			help_client(char *binary);
 void			list_cmd(char **cmd_client);
 int			loop_client(t_client *client);
-int			parse_cmd(char **cmd, t_client *client);
+int			parse_cmd(char **cmd, t_client *client, t_buffer *circular_buffer);
 int			init_socket(t_client *client, int port,
 				    const char *protocol, in_addr_t addr);
 int			close_socket(t_client *client);
 int			connect_socket(t_client *client);
-int			connection_server(t_client *client, char **cmd);
-int			quit_server(t_client *client, char **cmd);
-int			send_to_server(t_client *client, char **cmd);
+int			connection_server(t_client *client, char **cmd, t_buffer *buffer);
+int			quit_server(t_client *client, char **cmd, t_buffer *buffer);
+int			send_to_server(t_client *client, t_buffer *buffer);
 int			send_message(char **cmd, t_client *client);
 t_client		*init_client(t_client *client);
 
