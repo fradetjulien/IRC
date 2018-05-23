@@ -20,6 +20,10 @@ void			set_fd_client(t_client *client)
 
 char			**get_cmd(t_client *client, char *line, char **cmd)
 {
+	int		i = -1;
+
+	while (cmd[++i] != NULL)
+		cmd = memset(cmd[i], 0, strlen(cmd[i]));
 	line = my_epur_str(line);
 	if (line == NULL) {
 		return (NULL);
@@ -34,6 +38,7 @@ char			**get_cmd(t_client *client, char *line, char **cmd)
 	if (cmd == NULL) {
 		return (NULL);
 	}
+	free(line);
 	return (cmd);
 }
 
