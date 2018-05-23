@@ -22,7 +22,6 @@ int			main(int ac, char **av)
 		return (-1);
 	error = loop_client(client);
 	if (error == -1) {
-		printf("Error detected\n");
 		return (-1);
 	}
 	return (0);

@@ -10,9 +10,9 @@
 
 int		connection_server(t_client *client, char **cmd, t_buffer *buffer)
 {
-	int	port = atoi(cmd[1]);
+	int	port = atoi(cmd[2]);
 
-	client->IP = strdup(cmd[2]);
+	client->IP = strdup(cmd[1]);
 	if (client->IP == NULL)
 		return (-1);
 	if ((init_socket(client, port, "TCP", inet_addr(client->IP))) == -1) {

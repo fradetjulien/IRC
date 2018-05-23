@@ -32,7 +32,7 @@ int		parse_cmd(char **cmd, t_client *client, t_buffer *circular_buffer)
 	list_cmd(cmd_client);
 	init_fct(ptrf);
 	while (cmd_client[++i] != NULL) {
-		if (strcmp(cmd_client[i], cmd[0]) != 0) {
+		if (!strcmp(cmd_client[i], cmd[0])) {
 			ptrf[i](client, cmd, circular_buffer);
 		}
 	}

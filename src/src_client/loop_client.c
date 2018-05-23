@@ -56,19 +56,22 @@ int			loop_client(t_client *client)
 	size_t		len = 0;
 	t_buffer	*circular_buffer = create_buffer(circular_buffer);
 
-	while (line = get_next_line(0)) {
+	while (1) {
+		display_prompt();
+		line = get_next_line(0);
 		init_fds(client);
 		cmd = get_cmd(client, line, cmd);
-		display_prompt();
 		set_fd_client(client);
-		if ((select(client->fd, &client->read, &client->write,
-			    NULL, NULL)) == -1) {
+		if ((select(client->fd, &client->read, &client->write, NULL, NULL)) == -1) {
+			printf("Select error\n");
 			return (-1);
 		}
 		if (cmd[0][0] == '/')
 			parse_cmd(cmd, client, circular_buffer);
-		else
+		else if (client->fd != -1)
 			send_message(client, circular_buffer);
+		else
+			printf("This command doesn't exist\n");
 	}
 	return (0);
 }
