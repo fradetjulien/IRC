@@ -9,6 +9,6 @@
 
 int		send_message(t_client *client, t_buffer *circular_buffer)
 {
-	write_into_buffer(circular_buffer, client->cmd);
+	//write_into_buffer(circular_buffer, client->cmd);
 	return (0);
 }

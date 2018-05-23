@@ -60,14 +60,14 @@ char		**str_to_wordtab(char *str, char delimitor)
   if (tab == NULL)
 	  return (NULL);
   while (i < nb_words && (k = 0) == 0)
-    {
-      len = len_str(str, p, delimitor);
-      if ((tab[i] = malloc(sizeof(char) * len + 1)) == NULL)
-        return (NULL);
-      while ((check(str[p], delimitor) == 1) && str[p] != '\0')
-        tab[i][k++] = str[p++];
-      tab[i++][k] = '\0';
-      p = p + 1;
+  {
+	  len = len_str(str, p, delimitor);
+	  if ((tab[i] = malloc(sizeof(char) * len + 1)) == NULL)
+		  return (NULL);
+	  while ((check(str[p], delimitor) == 1) && str[p] != '\0')
+	      tab[i][k++] = str[p++];
+	  tab[i++][k] = '\0';
+	  p = p + 1;
     }
   tab[i] = NULL;
   return (tab);

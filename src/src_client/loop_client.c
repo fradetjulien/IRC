@@ -20,14 +20,12 @@ void			set_fd_client(t_client *client)
 
 char			**get_cmd(t_client *client, char *line, char **cmd)
 {
-	int		i = -1;
-
-	while (cmd[++i] != NULL)
-		cmd = memset(cmd[i], 0, strlen(cmd[i]));
-	line = my_epur_str(line);
-	if (line == NULL) {
+	if (line[0] == '\0' || line == NULL)
 		return (NULL);
-	}
+	else
+		line = my_epur_str(line);
+	if (line == NULL)
+		return (NULL);
 	else {
 		client->cmd = strdup(line);
 		if (client->cmd == NULL) {
@@ -38,7 +36,6 @@ char			**get_cmd(t_client *client, char *line, char **cmd)
 	if (cmd == NULL) {
 		return (NULL);
 	}
-	free(line);
 	return (cmd);
 }
 
@@ -57,7 +54,7 @@ void			init_fds(t_client *client)
 int			loop_client(t_client *client)
 {
 	char		*line = NULL;
-	char		**cmd;
+	char		**cmd = NULL;
 	size_t		len = 0;
 	t_buffer	*circular_buffer = create_buffer(circular_buffer);
 
@@ -66,11 +63,9 @@ int			loop_client(t_client *client)
 		line = get_next_line(0);
 		set_fd_client(client);
 		init_fds(client);
-		cmd = get_cmd(client, line, cmd);
-		/*if ((select(client->fd, &client->read, &client->write, NULL, NULL)) == -1) {
-			printf("Select error\n");
-			return (-1);
-			}*/
+		if ((cmd = get_cmd(client, line, cmd)) == NULL) {
+			loop_client(client);
+		}
 		if (cmd[0][0] == '/')
 			parse_cmd(cmd, client, circular_buffer);
 		else if (client->fd != -1)

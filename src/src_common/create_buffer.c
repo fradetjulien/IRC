@@ -9,10 +9,6 @@
 
 t_buffer		*create_buffer(t_buffer *circular_buffer)
 {
-	if (circular_buffer != NULL) {
-		if ((memset(circular_buffer, 0, sizeof(t_buffer))) == NULL)
-			return (NULL);
-	}
 	circular_buffer = malloc(sizeof(char *) * BUFFERSIZE);
 	if (circular_buffer == NULL)
 		return (NULL);
