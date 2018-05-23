@@ -24,6 +24,9 @@ SRC_CTL	= display_cmd.c		\
 SRC_SRV	= handle_client.c	\
 	  handle_connect.c	\
 	  handle_packet.c	\
+	  chat.c		\
+	  user.c		\
+	  manage_client.c	\
 	  main.c		\
 	  run_process.c
 
