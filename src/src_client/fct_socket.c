@@ -54,5 +54,9 @@ int		init_socket(t_client *client, int port, const char *protocol
 	client->s.sin_family = AF_INET;
 	client->s.sin_port = htons(port);
 	client->s.sin_addr.s_addr = addr;
+	if ((select(client->fd, &client->read, &client->write, NULL, NULL)) == -1) {
+		printf("Select error\n");
+		return (-1);
+	}
 	return (0);
 }

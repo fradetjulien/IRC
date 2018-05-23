@@ -49,8 +49,8 @@ void			init_fds(t_client *client)
 	if (&client->read != NULL)
 		FD_ZERO(&client->read);
 	if (client->fd != -1) {
-		FD_SET(0, &client->write);
-		FD_SET(0, &client->read);
+		FD_SET(client->fd, &client->write);
+		FD_SET(client->fd, &client->read);
 	}
 }
 
@@ -64,13 +64,13 @@ int			loop_client(t_client *client)
 	while (1) {
 		display_prompt();
 		line = get_next_line(0);
+		set_fd_client(client);
 		init_fds(client);
 		cmd = get_cmd(client, line, cmd);
-		set_fd_client(client);
-		if ((select(client->fd, &client->read, &client->write, NULL, NULL)) == -1) {
+		/*if ((select(client->fd, &client->read, &client->write, NULL, NULL)) == -1) {
 			printf("Select error\n");
 			return (-1);
-		}
+			}*/
 		if (cmd[0][0] == '/')
 			parse_cmd(cmd, client, circular_buffer);
 		else if (client->fd != -1)
