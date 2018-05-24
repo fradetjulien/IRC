@@ -46,8 +46,8 @@ void			init_fds(t_client *client)
 	if (&client->read != NULL)
 		FD_ZERO(&client->read);
 	if (client->fd != -1) {
-		FD_SET(client->fd, &client->write);
-		FD_SET(client->fd, &client->read);
+		FD_SET(1, &client->write);
+		FD_SET(0, &client->read);
 	}
 }
 
@@ -59,10 +59,10 @@ int			loop_client(t_client *client)
 	t_buffer	*circular_buffer = create_buffer(circular_buffer);
 
 	while (1) {
-		display_prompt();
-		line = get_next_line(0);
 		set_fd_client(client);
 		init_fds(client);
+		display_prompt();
+		line = get_next_line(0);
 		if ((cmd = get_cmd(client, line, cmd)) == NULL) {
 			loop_client(client);
 		}

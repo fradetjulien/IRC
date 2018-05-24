@@ -7,13 +7,14 @@
 
 #include "server.h"
 
-int	calc_clt(t_serv *serv, int i)
+int		calc_clt(t_serv *serv, int i)
 {
 	int	len = 0;
 	t_user 	*user;
 
 	if ((len = read(serv->sd, serv->buff, BUFF)) == 0)
 	{
+		printf("FD : %d\n", serv->sd);
 		printf("Succesfully disconnected\n");
     	if (close(serv->sd) == -1)
 		return (0);
@@ -34,7 +35,7 @@ int	calc_clt(t_serv *serv, int i)
 	return (1);
 }
 
-int	client_process(t_serv *serv)
+int		client_process(t_serv *serv)
 {
 	int	i = -1;
 

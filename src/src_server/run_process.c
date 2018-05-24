@@ -24,7 +24,7 @@ void	reset_connect(t_serv *serv)
 	}
 }
 
-int run_process(t_serv *serv)
+int	run_process(t_serv *serv)
 {
 	while (serv->statut == 1)
 	{

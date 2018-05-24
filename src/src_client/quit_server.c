@@ -13,5 +13,9 @@ int		quit_server(t_client *client, char **cmd, t_buffer *buffer)
 	if ((close(client->fd)) == -1) {
 		return (-1);
 	}
+	free(client->IP);
+	free(client->cmd);
+	free(client->protocol);
+	free(client);
 	return (0);
 }
