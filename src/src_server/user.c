@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** my_irc
+** File description:
+** user.c
+*/
+
 #include "server.h"
 
 int			count_user(t_user *i)

@@ -28,6 +28,7 @@ typedef struct	s_buffer
 }		t_buffer;
 
 int		is_num(char *port);
+int		is_numbis(char *host);
 int		write_into_buffer(t_buffer *circular_buffer, char *cmd);
 char		*get_next_line(const int fd);
 char		*my_epur_str(char *str);

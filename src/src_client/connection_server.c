@@ -8,14 +8,32 @@
 #include "client.h"
 #include "common.h"
 
+int		check_arguments(char *IP, char *port, t_client *client)
+{
+	int	p = 0;
+
+	if ((IP != NULL && is_numbis(IP) == 0) &&
+	    (port != NULL && is_num(port) == 0)) {
+		client->IP = strdup(IP);
+		if (client->IP == NULL)
+			return (-1);
+		p = atoi(port);
+		return (p);
+	}
+	else {
+		display_cmd();
+		return (-1);
+	}
+}
+
 int		connection_server(t_client *client, char **cmd, t_buffer *buffer)
 {
-	int	port = atoi(cmd[2]);
+	int	port = 0;
 
-	client->IP = strdup(cmd[1]);
-	if (client->IP == NULL)
+	if ((port = check_arguments(cmd[1], cmd[2], client)) == -1)
 		return (-1);
-	if ((init_socket(client, port, "TCP", inet_addr(client->IP))) == -1) {
+	if (client->IP == NULL ||
+	    (init_socket(client, port, "TCP", inet_addr(client->IP))) == -1) {
 		printf("Cannot initialize the connection\n");
 		return (-1);
 	}
