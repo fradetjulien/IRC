@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** 
+** my_irc
 ** File description:
-** 
+** handle_connect.c
 */
 
 #include "server.h"
 
-int	handle_connect(t_serv *serv)
+int		handle_connect(t_serv *serv)
 {
 	int	i = -1;
 	int	sock = 0;

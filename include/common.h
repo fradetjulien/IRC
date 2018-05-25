@@ -19,13 +19,13 @@
 
 # define BUFFERSIZE 512
 
-typedef struct	s_buffer
+typedef struct		s_buffer
 {
 	unsigned int	size;
 	unsigned int	begin;
 	unsigned int	end;
 	char		*circular_buffer;
-}		t_buffer;
+}			t_buffer;
 
 int		is_num(char *port);
 int		is_numbis(char *host);

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** 
+** my_irc
 ** File description:
-** 
+** handle_client.c
 */
 
 #include "server.h"
@@ -14,10 +14,9 @@ int		calc_clt(t_serv *serv, int i)
 
 	if ((len = read(serv->sd, serv->buff, BUFF)) == 0)
 	{
-		printf("FD : %d\n", serv->sd);
-		printf("Succesfully disconnected\n");
-    	if (close(serv->sd) == -1)
-		return (0);
+		printf("FD : %d\nSuccesfully disconnected\n", serv->sd);
+		if (close(serv->sd) == -1)
+			return (0);
 		serv->user = del_user(serv->cfdl[i], serv->user);
 		serv->cfdl[i] = 0;
 	}

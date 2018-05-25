@@ -10,8 +10,9 @@
 t_buffer		*create_buffer(t_buffer *circular_buffer)
 {
 	circular_buffer = malloc(sizeof(char *) * BUFFERSIZE);
-	if (circular_buffer == NULL)
+	if (circular_buffer == NULL) {
 		return (NULL);
+	}
 	circular_buffer->size = BUFFERSIZE;
 	circular_buffer->begin = sizeof(circular_buffer) + sizeof(t_buffer);
 	circular_buffer->end = sizeof(circular_buffer) + BUFFERSIZE;

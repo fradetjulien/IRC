@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** 
+** my_irc
 ** File description:
-** 
+** msg.h
 */
 
 #ifndef MSG_H_

@@ -7,9 +7,9 @@
 
 #include "server.h"
 
-int			count_user(t_user *i)
+int		count_user(t_user *i)
 {
-	int		c = 1;
+	int	c = 1;
 
 	if (i == NULL)
 		return (0);
@@ -21,11 +21,11 @@ int			count_user(t_user *i)
 	return (c);
 }
 
-t_user	*create_user(t_serv *serveur)
+t_user		*create_user(t_serv *serveur)
 {
-	t_user	*new;
+	t_user	*new = malloc(sizeof(t_user));;
 
-	if ((new = malloc(sizeof(t_user))) == NULL)
+	if (new == NULL)
 		return (NULL);
 	new->nick = strdup("no_name");
 	new->fd = serveur->cfd;
@@ -51,10 +51,9 @@ t_user			*get_user_by_id(t_user *i, int fd)
 
 t_user			*del_user(int port, t_user *elem)
 {
-	int 	len;
-	t_user	*u = elem;
+	int		len = count_user(elem);
+	t_user		*u = elem;
 
-	len = count_user(elem);
 	if (len == 1)
 	{
 		free(elem);
@@ -76,10 +75,9 @@ t_user			*del_user(int port, t_user *elem)
 
 t_user			*add_user(t_serv *serveur, t_user *elem)
 {
-	t_user	*new;
-	t_user	*tmp;
+	t_user		*new;
+	t_user		*tmp = elem;
 
-	tmp = elem;
 	if ((new = create_user(serveur)) == NULL)
 		return (NULL);
 	if (elem == NULL)

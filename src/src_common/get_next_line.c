@@ -54,11 +54,11 @@ char		*my_realloc(char *old, int size)
 
 char		*get_next_line(const int fd)
 {
-	char	*str;
+	char	*str = malloc((READ_SIZE + 1) * sizeof(*str));
 	int	nbr = 1;
 	int	i = 0;
 
-	if ((str = malloc((READ_SIZE + 1) * sizeof(*str))) == NULL)
+	if (str == NULL)
 		return (NULL);
 	nbr = select_c(fd, &str[i]);
 	if (nbr == 0) {
@@ -66,9 +66,10 @@ char		*get_next_line(const int fd)
 		return (NULL);
 	}
 	while (str[i]) {
-		if (i % READ_SIZE == 0)
+		if (i % READ_SIZE == 0) {
 			if ((str = my_realloc(str, i + READ_SIZE + 1)) == NULL)
 				return (NULL);
+		}
 		nbr = select_c(fd, &str[++i]);
 	}
 	str[++i] = '\0';
