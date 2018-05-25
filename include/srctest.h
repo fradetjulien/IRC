@@ -149,6 +149,13 @@ int receive_from_peer(peer_t *peer, int (*message_handler)(message_t *))
 {
   printf("Ready for recv() from %s.\n", peer_get_addres_str(peer));
   
+  char *buff[512];
+  int i = read(peer->socket, buff, 512);
+  if (i < 1)
+    return (-1);
+  buff[i] = 0;
+  printf("revc %s\n", buff);
+  return (0);
   size_t len_to_receive;
   ssize_t received_count;
   size_t received_total = 0;
@@ -190,6 +197,9 @@ int receive_from_peer(peer_t *peer, int (*message_handler)(message_t *))
 
 int send_to_peer(peer_t *peer)
 { 
+  send(peer->socket, "coucou\r\n", strlen("coucou\r\n"), 0);
+  peer->current_sending_byte += 8;
+  return (0);
   size_t len_to_send;
   ssize_t send_count;
   size_t send_total = 0;
@@ -211,7 +221,7 @@ int send_to_peer(peer_t *peer)
     send_count = send(peer->socket, (char *)&peer->sending_buffer + peer->current_sending_byte, len_to_send, 0);
     if (send_count < 0) {
       if (errno == EAGAIN || errno == EWOULDBLOCK) {
-        printf("peer is not ready right now, try again later.\n");
+        printf("peer is not ready right now, try Iagain later.\n");
       }
       else {
         perror("send() from peer error");

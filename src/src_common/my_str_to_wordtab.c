@@ -49,9 +49,9 @@ int		len_str(char *str, int i, char delimitor)
 
 char			**str_to_wordtab(char *str, char delimitor)
 {
-	char		**tab = malloc(sizeof(char *) * (nb_words + 1));
 	int		i = 0;
 	int		nb_words = count_words(str, delimitor);
+	char		**tab = malloc(sizeof(char *) * (nb_words + 1));
 	int		k, p = 0;
 	int		len;
 

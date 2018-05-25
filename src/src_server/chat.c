@@ -6,7 +6,7 @@ int		send_to_users(t_user *user, char *m)
 		return (1);
 	while (user)
 	{
-		printf("port: %d\n", user->fd);
+		printf("port: %d : %s\n", user->fd, m);
 		send(user->fd, m, strlen(m), 0);
 		user = user->next;
 	}
