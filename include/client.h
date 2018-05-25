@@ -41,10 +41,9 @@ void			help_client(char *binary);
 void			list_cmd(char **cmd_client);
 int			loop_client(t_client *client);
 int			parse_cmd(char **cmd, t_client *client, t_buffer *circular_buffer);
-int			init_socket(t_client *client, int port,
-				    const char *protocol, in_addr_t addr);
+int			init_socket(t_client *client, const char *protocol);
 int			close_socket(t_client *client);
-int			connect_socket(t_client *client);
+int			connect_socket(t_client *client, int port, in_addr_t addr);
 int			connection_server(t_client *client, char **cmd, t_buffer *buffer);
 int			quit_server(t_client *client, char **cmd, t_buffer *buffer);
 int			send_to_server(t_client *client, char **cmd, t_buffer *buffer);

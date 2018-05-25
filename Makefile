@@ -6,9 +6,9 @@
 ##
 
 
-SRC_CTL = main.c
+SRC_CTLL = main.c
 
-SRC_CTLL	= display_cmd.c		\
+SRC_CTL = display_cmd.c		\
 	  client.c		\
 	  help_client.c		\
 	  init_client.c		\
@@ -21,7 +21,8 @@ SRC_CTLL	= display_cmd.c		\
 	  send_message.c	\
 	  connection_server.c	\
 	  send_to_server.c	\
-	  quit_server.c
+	  quit_server.c		\
+	  read_from_server.c
 
 SRC_SRV	= handle_client.c	\
 	  handle_connect.c	\
@@ -39,8 +40,10 @@ SRC_COM	= flag_help.c		\
 	  get_next_line.c	\
 	  create_buffer.c	\
 	  write_into_buffer.c
-OBJ_CTL	= $(addprefix src_test/, $(SRC_CTL:.c=.o))
-OBJ_CTLL	= $(addprefix src/src_client/, $(SRC_CTL:.c=.o))
+
+OBJ_CTLL= $(addprefix src_test/, $(SRC_CTL:.c=.o))
+
+OBJ_CTL = $(addprefix src/src_client/, $(SRC_CTL:.c=.o))
 
 OBJ_SRV	= $(addprefix src/src_server/, $(SRC_SRV:.c=.o))
 

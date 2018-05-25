@@ -7,10 +7,13 @@
 
 #include "client.h"
 
-int		connect_socket(t_client *client)
+int		connect_socket(t_client *client, int port, in_addr_t addr)
 {
 	int	error = 0;
 
+	client->s.sin_family = AF_INET;
+	client->s.sin_addr.s_addr = addr;
+	client->s.sin_port = htons(port);
 	error = connect(client->fd, (const struct sockaddr *)&client->s,
 			sizeof(client->s));
 	if (error == -1) {

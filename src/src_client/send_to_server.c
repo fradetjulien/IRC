@@ -16,11 +16,13 @@ int		send_to_server(t_client *client, char **cmd, t_buffer *buffer)
 	if (buff == NULL) {
 		return (-1);
 	}
-	if (FD_ISSET(client->fd, &client->write)) {
-		error = write(client->fd, buff, strlen(buff));
+	printf("FIRST PASS, Buff : %s\nFD : %d\n", buff, client->fd);
+	/*if (FD_ISSET(client->fd, &client->write)) {
+	  printf("PASSED\n");*/
+	error = write(client->fd, buff, strlen(buff) );
 		if (error == -1) {
+			printf("WRITE ERROR\n");
 			return (-1);
 		}
-	}
 	return (0);
 }

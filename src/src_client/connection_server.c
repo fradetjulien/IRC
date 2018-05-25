@@ -32,12 +32,9 @@ int		connection_server(t_client *client, char **cmd, t_buffer *buffer)
 
 	if ((port = check_arguments(cmd[1], cmd[2], client)) == -1)
 		return (-1);
-	if (client->IP == NULL ||
-	    (init_socket(client, port, "TCP", inet_addr(client->IP))) == -1) {
-		printf("Cannot initialize the connection\n");
+	if (client->IP == NULL)
 		return (-1);
-	}
-	if ((connect_socket(client)) == -1) {
+	if (connect_socket(client, port, inet_addr(client->IP)) == -1) {
 		printf("Impossible to connect to the server\n");
 		return (-1);
 	}

@@ -11,6 +11,7 @@
 int		quit_server(t_client *client, char **cmd, t_buffer *buffer)
 {
 	if ((close(client->fd)) == -1) {
+		printf("FAILED\n");
 		return (-1);
 	}
 	free(client->IP);
