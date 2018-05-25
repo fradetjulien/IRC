@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** my_irc
+** 
 ** File description:
-** run_process.c
+** 
 */
 
 #include "server.h"
 
-void		reset_connect(t_serv *serv)
+void	reset_connect(t_serv *serv)
 {
 	int	i = -1;
 
@@ -24,13 +24,12 @@ void		reset_connect(t_serv *serv)
 	}
 }
 
-int		run_process(t_serv *serv)
+int run_process(t_serv *serv)
 {
 	while (serv->statut == 1)
 	{
 		reset_connect(serv);
-		if (select(serv->sd_size + 1, &serv->rset, NULL,
-			   NULL, NULL) == -1)
+		if (select(serv->sd_size + 1, &serv->rset, NULL, NULL, NULL) == -1)
 			return (0);
 		if (FD_ISSET(serv->ssd, &serv->rset))
 		{

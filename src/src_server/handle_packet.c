@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** my_irc
+** 
 ** File description:
-** handle_packet.c
+** 
 */
 
 #include "server.h"
 
-int		put_cfd(t_serv *serv)
+int	put_cfd(t_serv *serv)
 {
 	int	i = -1;
 	int	f = 0;
@@ -17,7 +17,7 @@ int		put_cfd(t_serv *serv)
 		if (serv->cfdl[i] == 0)
 		{
 			serv->cfdl[i] = serv->cfd;
-			return (i);
+			return (serv->cfd);
 			f = 1;
 		}
 		else
@@ -27,6 +27,7 @@ int		put_cfd(t_serv *serv)
 
 int	handle_packet(t_serv *serv)
 {
+	//create user in list
 	if ((serv->cfd = accept(serv->ssd, (struct sockaddr *)&serv->s_in,
 				(socklen_t*)&serv->s_in_size)) == -1)
 		return (0);
@@ -34,5 +35,6 @@ int	handle_packet(t_serv *serv)
 	if ((serv->user = add_user(serv, serv->user)) == NULL)
 		return (0);
 	printf("there is %d user connected.\n", count_user(serv->user));
+	//send(serv->cfd, WELCOME, strlen(WELCOME), 0);
 	return (1);
 }
