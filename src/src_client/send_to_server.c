@@ -8,7 +8,7 @@
 #include "client.h"
 #include "common.h"
 
-int		send_to_server(t_client *client, char **cmd, t_buffer *buffer)
+int		send_to_server(t_client *client, char **cmd)
 {
 	int	error = 0;
 	char	*buff = strdup(client->cmd);
@@ -16,13 +16,12 @@ int		send_to_server(t_client *client, char **cmd, t_buffer *buffer)
 	if (buff == NULL) {
 		return (-1);
 	}
-	printf("FIRST PASS, Buff : %s\nFD : %d\n", buff, client->fd);
-	/*if (FD_ISSET(client->fd, &client->write)) {
-	  printf("PASSED\n");*/
-	error = write(client->fd, buff, strlen(buff) );
-		if (error == -1) {
-			printf("WRITE ERROR\n");
-			return (-1);
-		}
+	if (client->fd != -1)
+		error = write(client->fd - 1, buff, strlen(buff));
+	if (error == -1) {
+		printf("WRITE ERROR\n");
+		return (-1);
+	}
+	client->actif = 0;
 	return (0);
 }

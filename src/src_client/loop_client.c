@@ -8,13 +8,6 @@
 #include "client.h"
 #include "common.h"
 
-void			set_fd_client(t_client *client)
-{
-	if (client->fd == -1) {
-		client->fd = 1;
-	}
-}
-
 char			**get_cmd(t_client *client, char *line, char **cmd)
 {
 	if (line[0] == '\0' || line == NULL)
@@ -42,42 +35,38 @@ void			init_fds(t_client *client)
 		FD_ZERO(&client->write);
 	if (&client->read != NULL)
 		FD_ZERO(&client->read);
-	if (client->fd != -1) {
-		FD_SET(client->fd, &client->write);
+	if (client->fd != -1 && client->actif == 0) {
 		FD_SET(client->fd, &client->read);
 	}
+	else
+		FD_SET(client->fd, &client->write);
+	FD_SET(0, &client->read);
+}
+
+void			set_fd_client(t_client *client)
+{
+	display_prompt();
+	if (client->fd == -1) {
+		client->fd = 1;
+	}
+	init_fds(client);
 }
 
 int			loop_client(t_client *client)
 {
 	char		*line = NULL;
-	char		**cmd = NULL;
 	size_t		len = 0;
-	t_buffer	*circular_buffer = create_buffer(circular_buffer);
 
-	if (init_socket(client, "TCP") == -1) {
-		printf("Cannot initialize the connection\n");
-		return (-1);
-	}
 	while (1) {
 		set_fd_client(client);
-		init_fds(client);
-		display_prompt();
 		line = get_next_line(0);
 		if ((select(client->fd + 1, &client->read, &client->write, NULL, NULL)) == -1) {
 			printf("Select error\n");
 			return (-1);
 		}
-		if ((cmd = get_cmd(client, line, cmd)) == NULL) {
-			loop_client(client);
-		}
-		if (cmd[0][0] == '/')
-			parse_cmd(cmd, client, circular_buffer);
-		else if (client->fd != -1)
-			send_message(client, circular_buffer);
-		else
-			printf("This command doesn't exist\n");
-		read_from_server(client);
+		if (check_fd(client, line) == -1)
+			return (-1);
+		printf("ACTIF : %d\n", client->actif);
 	}
 	return (0);
 }

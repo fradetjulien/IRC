@@ -8,7 +8,7 @@
 #include "client.h"
 #include "common.h"
 
-void		init_fct(int (**ptrf)(t_client *client, char **cmd, t_buffer *buffer))
+void		init_fct(int (**ptrf)(t_client *client, char **cmd))
 {
 	ptrf[0] = &connection_server;
 	ptrf[1] = &send_to_server;
@@ -23,17 +23,17 @@ void		init_fct(int (**ptrf)(t_client *client, char **cmd, t_buffer *buffer))
 	ptrf[10] = NULL;
 }
 
-int		parse_cmd(char **cmd, t_client *client, t_buffer *circular_buffer)
+int		parse_cmd(char **cmd, t_client *client)
 {
 	char	*cmd_client[11];
-	int	(*ptrf[11])(t_client *client, char **cmd, t_buffer *circular_buffer);
+	int	(*ptrf[11])(t_client *client, char **cmd);
 	int	i = -1;
 
 	list_cmd(cmd_client);
 	init_fct(ptrf);
 	while (cmd_client[++i] != NULL) {
 		if (!strcmp(cmd_client[i], cmd[0])) {
-			ptrf[i](client, cmd, circular_buffer);
+			ptrf[i](client, cmd);
 		}
 	}
 	return (0);

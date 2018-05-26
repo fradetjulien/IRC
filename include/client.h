@@ -33,6 +33,8 @@ typedef struct			s_client
 	int			fd;
 	char			*IP;
 	char			*cmd;
+	int			actif;
+	int			passif;
 }				t_client;
 
 void			display_cmd();
@@ -40,14 +42,18 @@ void			display_prompt();
 void			help_client(char *binary);
 void			list_cmd(char **cmd_client);
 int			loop_client(t_client *client);
-int			parse_cmd(char **cmd, t_client *client, t_buffer *circular_buffer);
+int			parse_cmd(char **cmd, t_client *client);
 int			init_socket(t_client *client, const char *protocol);
 int			close_socket(t_client *client);
 int			connect_socket(t_client *client, int port, in_addr_t addr);
-int			connection_server(t_client *client, char **cmd, t_buffer *buffer);
-int			quit_server(t_client *client, char **cmd, t_buffer *buffer);
-int			send_to_server(t_client *client, char **cmd, t_buffer *buffer);
-int			send_message(t_client *client, t_buffer *circular_buffer);
+int			connection_server(t_client *client, char **cmd);
+int			quit_server(t_client *client, char **cmd);
+int			send_to_server(t_client *client, char **cmd);
+int			send_message(t_client *client);
+int			read_from_server(t_client *client);
+int			parsing(t_client *client, char *line);
+int			check_fd(t_client *client, char *line);
+char			**get_cmd(t_client *client, char *line, char **cmd);
 t_client		*init_client(t_client *client);
 
 #endif /* !CLIENT_H_ */

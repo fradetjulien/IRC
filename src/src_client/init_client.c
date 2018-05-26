@@ -15,6 +15,8 @@ t_client		*init_client(t_client *client)
 	client->protocol = NULL;
 	client->port = -1;
 	client->fd = -1;
+	client->actif = 1;
+	client->passif = 0;
 	client->IP = NULL;
 	return (client);
 }

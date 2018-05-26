@@ -8,7 +8,7 @@
 #include "client.h"
 #include "common.h"
 
-int		quit_server(t_client *client, char **cmd, t_buffer *buffer)
+int		quit_server(t_client *client, char **cmd)
 {
 	if ((close(client->fd)) == -1) {
 		printf("FAILED\n");
@@ -16,7 +16,6 @@ int		quit_server(t_client *client, char **cmd, t_buffer *buffer)
 	}
 	free(client->IP);
 	free(client->cmd);
-	free(client->protocol);
 	free(client);
 	return (0);
 }

@@ -22,7 +22,9 @@ SRC_CTL = display_cmd.c		\
 	  connection_server.c	\
 	  send_to_server.c	\
 	  quit_server.c		\
-	  read_from_server.c
+	  read_from_server.c	\
+	  parsing.c		\
+	  check_fd.c
 
 SRC_SRV	= handle_client.c	\
 	  handle_connect.c	\
@@ -37,9 +39,7 @@ SRC_COM	= flag_help.c		\
 	  is_num.c		\
 	  my_epur_str.c		\
 	  my_str_to_wordtab.c	\
-	  get_next_line.c	\
-	  create_buffer.c	\
-	  write_into_buffer.c
+	  get_next_line.c
 
 OBJ_CTLL= $(addprefix src_test/, $(SRC_CTL:.c=.o))
 

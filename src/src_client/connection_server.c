@@ -26,7 +26,7 @@ int		check_arguments(char *IP, char *port, t_client *client)
 	}
 }
 
-int		connection_server(t_client *client, char **cmd, t_buffer *buffer)
+int		connection_server(t_client *client, char **cmd)
 {
 	int	port = 0;
 

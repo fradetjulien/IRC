@@ -10,12 +10,13 @@
 int		read_from_server(t_client *client)
 {
 	char	buff[512];
-	int	o;
 
-	if (FD_ISSET(client->fd, &client->read)) {
-		o = read(client->fd, buff, 512);
-		buff[o] = 0;
-		printf("Buff : %s\n", buff);
+	if (read(client->fd - 1, buff, 512) == -1) {
+		printf("Read failed\n");
+		return (-1);
 	}
+	else
+		printf("BUFF : %s\n", buff);
+	client->actif = 1;
 	return (0);
 }
