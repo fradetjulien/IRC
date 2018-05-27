@@ -18,11 +18,11 @@ int	handle_connect(t_serv *serv)
 		return (0);
 	if ((serv->ssd = socket(AF_INET, SOCK_STREAM, serv->pe->p_proto)) == -1)
 		return (0);
-	if (setsockopt(serv->ssd, SOL_SOCKET, SO_REUSEADDR, (char *)&sock, 
+	if (setsockopt(serv->ssd, SOL_SOCKET, SO_REUSEADDR, (char *)&sock,
 		sizeof(sock)) == -1)
 		return (0);
-	if (bind(serv->ssd, (const struct sockaddr*)&serv->s_in, 
-		 sizeof(serv->s_in)) == -1)
+	if (bind(serv->ssd, (const struct sockaddr*)&serv->s_in,
+		sizeof(serv->s_in)) == -1)
 		return (0);
 	if (listen(serv->ssd, 42) == -1)
 		return (0);

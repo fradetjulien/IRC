@@ -1,8 +1,8 @@
- /*
+/*
 ** EPITECH PROJECT, 2018
-** my_irc
+** h
 ** File description:
-** my_epur_str.c
+** 
 */
 
 #include "common.h"

@@ -29,6 +29,7 @@ SRC_CTL = display_cmd.c		\
 SRC_SRV	= handle_client.c	\
 	  handle_connect.c	\
 	  handle_packet.c	\
+	  channel_func.c	\
 	  chat.c		\
 	  channel.c 	\
 	  user.c		\

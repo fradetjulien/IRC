@@ -25,14 +25,13 @@ int	calc_clt(t_serv *serv, int i)
 		close_co(serv, i);
 	else if (len == 0)
 		printf("Client disconnected\n");
-	else
-	{
+	else {
 		serv->buff[len] = 0;
-		//send_to_users(serv->user, serv->buff);
 		if ((user = get_user_by_id(serv->user, serv->cfdl[i])) != NULL)
 			len = manage_client(serv, user, serv->buff);
 		else
-			printf("UnKnown client %d msg: %s\n", serv->cfdl[i], serv->buff);
+			printf("UnKnown client %d msg: %s\n",
+			serv->cfdl[i], serv->buff);
 	}
 	if (len == -1)
 		close_co(serv, i);
@@ -43,13 +42,11 @@ int	client_process(t_serv *serv)
 {
 	int	i = -1;
 
-	while (++i < MAX)
-	{
+	while (++i < MAX) {
 		serv->sd = serv->cfdl[i];
-		if (FD_ISSET(serv->sd, &serv->rset))
-		{
-			if (calc_clt(serv, i) == 0)
-				return (0);
+		if (FD_ISSET(serv->sd, &serv->rset) &&
+		calc_clt(serv, i) == 0) {
+			return (0);
 		}
 	}
 	return (1);

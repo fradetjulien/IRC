@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** 
+** File description:
+** 
+*/
+
 #include "server.h"
 
 int			count_user(t_user *i)
@@ -6,8 +13,7 @@ int			count_user(t_user *i)
 
 	if (i == NULL)
 		return (0);
-	while (i->next != NULL)
-	{
+	while (i->next != NULL){
 		i = i->next;
 		c++;
 	}
@@ -33,8 +39,7 @@ t_user			*get_user_by_id(t_user *i, int fd)
 {
 	if (i == NULL)
 		return (NULL);
-	while (i)
-	{
+	while (i) {
 		if (i->fd == fd)
 			return (i);
 		i = i->next;
@@ -49,22 +54,19 @@ t_user			*del_user(int port, t_user *elem)
 
 	printf("user deleted on port : %d\n", port);
 	len = count_user(elem);
-	if (len == 1)
-	{
+	if (len == 1) {
 		free(elem);
 		return (NULL);
 	}
 	if (elem->fd == port)
 		return (elem->next);
-	while (elem->next != NULL)
-	{
-			if (elem->next->fd == port)
-			{
-				elem->next = elem->next->next;
-				return (u);
-			}
-			elem = elem->next;
+	while (elem->next != NULL) {
+		if (elem->next->fd == port) {
+			elem->next = elem->next->next;
+			return (u);
 		}
+		elem = elem->next;
+	}
 	return (u);
 }
 
