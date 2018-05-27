@@ -15,8 +15,9 @@ int		check_arguments(char *IP, char *port, t_client *client)
 	if ((IP != NULL && is_numbis(IP) == 0) &&
 	    (port != NULL && is_num(port) == 0)) {
 		client->IP = strdup(IP);
-		if (client->IP == NULL)
+		if (client->IP == NULL) {
 			return (-1);
+		}
 		p = atoi(port);
 		return (p);
 	}
@@ -30,10 +31,12 @@ int		connection_server(t_client *client, char **cmd)
 {
 	int	port = 0;
 
-	if ((port = check_arguments(cmd[1], cmd[2], client)) == -1)
+	if ((port = check_arguments(cmd[1], cmd[2], client)) == -1) {
 		return (-1);
-	if (client->IP == NULL)
+	}
+	if (client->IP == NULL) {
 		return (-1);
+	}
 	if (connect_socket(client, port, inet_addr(client->IP)) == -1) {
 		printf("Impossible to connect to the server\n");
 		return (-1);

@@ -51,7 +51,7 @@ int			quit_server(t_client *client, char **cmd);
 int			send_to_server(t_client *client, char **cmd);
 int			send_message(t_client *client);
 int			read_from_server(t_client *client);
-int			parsing(t_client *client, char *line);
+int			parsing(t_client *client, char *line, char **cmd);
 int			check_fd(t_client *client, char *line);
 char			**get_cmd(t_client *client, char *line, char **cmd);
 t_client		*init_client(t_client *client);

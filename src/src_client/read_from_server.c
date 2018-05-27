@@ -10,13 +10,14 @@
 int		read_from_server(t_client *client)
 {
 	char	buff[512];
+	int	err = read(client->fd - 1, buff, 512);
 
-	if (read(client->fd - 1, buff, 512) == -1) {
+	if (err == -1) {
 		printf("Read failed\n");
 		return (-1);
 	}
 	else
-		printf("BUFF : %s\n", buff);
+		buff[err - 2] = 0;
 	client->actif = 1;
 	return (0);
 }

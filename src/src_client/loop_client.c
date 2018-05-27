@@ -8,7 +8,7 @@
 #include "client.h"
 #include "common.h"
 
-char			**get_cmd(t_client *client, char *line, char **cmd)
+char		**get_cmd(t_client *client, char *line, char **cmd)
 {
 	if (line[0] == '\0' || line == NULL)
 		return (NULL);
@@ -33,14 +33,12 @@ void			init_fds(t_client *client)
 {
 	if (&client->write != NULL)
 		FD_ZERO(&client->write);
-	if (&client->read != NULL)
+	if (&client->write != NULL)
 		FD_ZERO(&client->read);
-	if (client->fd != -1 && client->actif == 0) {
-		FD_SET(client->fd, &client->read);
-	}
-	else
-		FD_SET(client->fd, &client->write);
 	FD_SET(0, &client->read);
+	FD_SET(1, &client->write);
+	FD_SET(client->fd, &client->read);
+	FD_SET(client->fd, &client->write);
 }
 
 void			set_fd_client(t_client *client)
@@ -66,7 +64,6 @@ int			loop_client(t_client *client)
 		}
 		if (check_fd(client, line) == -1)
 			return (-1);
-		printf("ACTIF : %d\n", client->actif);
 	}
 	return (0);
 }

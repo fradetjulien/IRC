@@ -19,9 +19,11 @@ int		send_to_server(t_client *client, char **cmd)
 	if (client->fd != -1)
 		error = write(client->fd - 1, buff, strlen(buff));
 	if (error == -1) {
-		printf("WRITE ERROR\n");
+		printf("Write error\n");
 		return (-1);
 	}
+	free(buff);
+	buff = NULL;
 	client->actif = 0;
 	return (0);
 }

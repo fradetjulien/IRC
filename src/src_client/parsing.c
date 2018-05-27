@@ -7,17 +7,10 @@
 
 #include "client.h"
 
-int		parsing(t_client *client, char *line)
+int		parsing(t_client *client, char *line, char **cmd)
 {
-	char	**cmd = NULL;
-
-	if (init_socket(client, "TCP") == -1) {
-		printf("Cannot initialize the connection\n");
+	if ((cmd = get_cmd(client, line, cmd)) == NULL)
 		return (-1);
-	}
-	if ((cmd = get_cmd(client, line, cmd)) == NULL) {
-		loop_client(client);
-	}
 	if (cmd[0][0] == '/')
 		parse_cmd(cmd, client);
 	else if (client->fd != -1)
