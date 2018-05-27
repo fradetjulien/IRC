@@ -10,7 +10,7 @@
 
 char		**get_cmd(t_client *client, char *line, char **cmd)
 {
-	if (line[0] == '\0' || line == NULL)
+	if (line && line[0] && line[0] == '\0' || line == NULL)
 		return (NULL);
 	else
 		line = my_epur_str(line);

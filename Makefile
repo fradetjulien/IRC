@@ -52,9 +52,9 @@ OBJ_SRV	= $(addprefix src/src_server/, $(SRC_SRV:.c=.o))
 
 OBJ_COM	= $(addprefix src/src_common/, $(SRC_COM:.c=.o))
 
-LDFLAGS = -lm -g
+LDFLAGS = -lm
 
-CFLAGS	= -I./include/ -g
+CFLAGS	= -I./include/
 
 RM 	= rm -f
 

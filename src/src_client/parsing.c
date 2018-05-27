@@ -11,7 +11,7 @@ int		parsing(t_client *client, char *line, char **cmd)
 {
 	if ((cmd = get_cmd(client, line, cmd)) == NULL)
 		return (-1);
-	if (cmd[0][0] == '/')
+	if (cmd && cmd[0] && cmd[0][0] && cmd[0][0] == '/')
 		parse_cmd(cmd, client);
 	else if (client->fd != -1)
 		send_message(client);

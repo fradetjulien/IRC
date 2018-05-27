@@ -43,7 +43,7 @@ char		*my_epur_str(char *str)
 			epur_area(str, i + 1);
 		i++;
 	}
-	if (str[i - 1] == ' ')
+	if (str && str[i] && str[i - 1] && str[i - 1] == ' ')
 		i--;
 	str[i] = '\0';
 	return (str);
