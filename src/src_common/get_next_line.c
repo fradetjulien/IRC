@@ -59,7 +59,8 @@ char		*get_next_line(const int fd)
 	}
 	while (str[i]) {
 		if (i % READ_SIZE == 0) {
-			if ((str = my_realloc(str, i + READ_SIZE + 1)) == NULL)
+			str = my_realloc(str, i + READ_SIZE + 1);
+			if (str == NULL)
 				return (NULL);
 		}
 		nbr = select_c(fd, &str[++i]);
