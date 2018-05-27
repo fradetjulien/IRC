@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <stdbool.h>
 # include "common.h"
+# include "msg.h"
 
 # define MAX 128
 # define BUFF 2048
@@ -73,11 +74,19 @@ int handle_connect(t_serv *serv);
 
 
 t_user		*add_user(t_serv *, t_user *);
+int	send_to_channel(t_serv *serv, t_user *user, char *msg, char *bb);
 int			count_user(t_user *i);
 int		send_to_all(t_user *user, char *m);
 int		send_to_users(t_user *user, char *m);
 t_user			*del_user(int port, t_user *elem);
+int 	send_to(int fd, char *msg);
 int		manage_client(t_serv *serv, t_user *user, char *msg);
 t_user			*get_user_by_id(t_user *i, int fd);
+t_channel			*leave_channel(t_serv *serv, t_user *user, char *name);
+t_channel			*join_channel(t_serv *serv, t_user *user, char *name);
+t_channel			*add_channel(t_serv *serveur, t_user *elem, char *name);
+int	send_welcome(int fd);
+int	handle_nick(t_serv *serv, t_user *user, char **tab);
+t_channel			*get_channel_by_name(t_channel *i, char *name);
 
 #endif	/* !CLIENT_H_ */

@@ -30,9 +30,11 @@ SRC_SRV	= handle_client.c	\
 	  handle_connect.c	\
 	  handle_packet.c	\
 	  chat.c		\
+	  channel.c 	\
 	  user.c		\
 	  manage_client.c	\
 	  main.c		\
+	  nick.c 		\
 	  run_process.c
 
 SRC_COM	= flag_help.c		\

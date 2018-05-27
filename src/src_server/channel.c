@@ -23,7 +23,7 @@ int			count_channel(t_channel *i)
 
 int		channel_user_count(t_channel *chan)
 {
-	int i = -1
+	int i = -1;
 
 	while (chan->members[++i]);
 	return (i);
@@ -35,13 +35,13 @@ t_channel	*create_channel(t_serv *serveur, char *name, t_user *creator)
 
 	if ((new = malloc(sizeof(t_channel))) == NULL)
 		return (NULL);
-	new->id = count_channel(serveur->channel)
+	new->id = count_channel(serveur->channel) + 1;
 	new->name = name;
 	new->creator = strdup(creator->nick);
 	new->members[0] = creator;
 	new->members[1] = NULL;
 	new->next = NULL;
-	printf("New channel created: %s, by %s\n", name, creator->nick);
+	printf("New channel created: %s, by %s, id: %d\n", name, creator->nick, new->id);
 	return (new);
 }
 
@@ -64,7 +64,7 @@ t_channel			*get_channel_by_name(t_channel *i, char *name)
 		return (NULL);
 	while (i)
 	{
-		if (i->name == name)
+		if (strcmp(i->name, name) == 0)
 			return (i);
 		i = i->next;
 	}
@@ -97,25 +97,84 @@ t_channel			*del_channel(int id, t_channel *elem)
 	return (u);
 }
 
+int 	user_is_on_channel(t_channel *chan, t_user *user)
+{
+	int i = -1;
+
+	while (chan->members[++i])
+	{
+		if (chan->members[i]->fd == user->fd)
+			return (1);
+	}
+	return (0);
+}
+
 t_channel			*join_channel(t_serv *serv, t_user *user, char *name)
 {
-	if (get_channel_by_name(serv->channel, name) == NULL)
-		return (add_channel(serv, user, name));
-	
+	t_channel	*tmp = serv->channel;
+	t_channel	*chan;
+	int i = -1;
+
+	if ((chan = get_channel_by_name(serv->channel, name)) == NULL)
+	{
+		{
+			printf("%s, %d\n", user->nick, user->fd);
+			dprintf(user->fd, "JOIN %s\r\n", name);
+			return (add_channel(serv, user, name));
+		}
+	}
+	if (user_is_on_channel(chan, user))
+	{
+		dprintf(user->fd, "deja\r\n");
+		return (tmp);
+	}
+	while (chan->members[++i] != NULL && i < MAX - 1);
+	chan->members[i] = user;
+	chan->members[i + 1] = NULL;
+	printf("%s, %d\n", user->nick, user->fd);
+	dprintf(user->fd, "JOIN %s\r\n", name);
+	return (tmp);
+}
+
+t_channel			*leave_channel(t_serv *serv, t_user *user, char *name)
+{
+	t_channel *tmp = serv->channel;
+	t_channel *chan;
+	int i = -1;
+	int f = 0;
+
+	if ((chan = get_channel_by_name(serv->channel, name)) == NULL)
+	{
+		send_to(user->fd, m442);
+		return (tmp);
+	}
+	while (chan->members[++i] && f != -1)
+	{
+		if (chan->members[i] == user)
+			f = 1;
+		if (f)
+			chan->members[i] = chan->members[i + 1];
+		if (chan->members[i] == NULL)
+			f = -1;
+	}
+	dprintf(user->fd, "PART %s\r\n", name);
+	if (i == 1)
+		return (del_channel(chan->id, tmp));
+	return (tmp);
 }
 
 t_channel			*add_channel(t_serv *serveur, t_user *elem, char *name)
 {
-	t_user	*new;
-	t_user	*tmp;
+	t_channel	*new;
+	t_channel	*tmp;
 
-	tmp = elem;
+	tmp = serveur->channel;
 	if ((new = create_channel(serveur, name, elem)) == NULL)
 		return (NULL);
-	if (elem == NULL)
+	if (serveur->channel == NULL)
 		return (new);
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
-	return (elem);
+	return (serveur->channel);
 }

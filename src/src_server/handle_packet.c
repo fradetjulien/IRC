@@ -34,6 +34,7 @@ int	handle_packet(t_serv *serv)
 	printf("New client connected on fd : %d\n", put_cfd(serv));
 	if ((serv->user = add_user(serv, serv->user)) == NULL)
 		return (0);
+	send_welcome(serv->cfd);
 	printf("there is %d user connected.\n", count_user(serv->user));
 	//send(serv->cfd, WELCOME, strlen(WELCOME), 0);
 	return (1);
