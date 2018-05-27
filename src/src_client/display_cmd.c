@@ -7,7 +7,7 @@
 
 #include "client.h"
 
-void		display_cmd()
+void		display_cmd(void)
 {
 	printf("Here are the commands that you can execute :\n");
 	printf("\t/server $host[:$port]: connects to a server\n");
@@ -21,10 +21,12 @@ void		display_cmd()
 	printf("to the server\n");
 	printf("\t/names $channel: lists the nicknames of the users connected");
 	printf(" to the channel\n");
-	printf("\t$message: sends a message to all of the users that are connected");
+	printf("\t$message: sends a message to all of the users that");
+	printf("are connected");
 	printf(" to the channel\n");
-	printf("\t/msg $nickname $message: sends a message to a specific user\n");
+	printf("\t/msg $nickname $message: sends a message to a specific");
+	printf("user\n");
 	printf("\t/msg $channel $nickname $file: sends a file to a user\n");
-	printf("\t/accept_file $nickname: accepts the reception of a file coming "
-	       "from one of the channel’s users\n");
+	printf("\t/accept_file $nickname: accepts the reception");
+	printf("of a file coming from one of the channel’s users\n");
 }

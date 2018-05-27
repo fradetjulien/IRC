@@ -19,7 +19,7 @@ int		connect_socket(t_client *client, int port, in_addr_t addr)
 	client->s.sin_addr.s_addr = addr;
 	client->s.sin_port = htons(port);
 	error = connect(client->fd, (const struct sockaddr *)&client->s,
-			sizeof(client->s));
+	sizeof(client->s));
 	if (error == -1) {
 		close_socket(client);
 		return (-1);
@@ -27,7 +27,7 @@ int		connect_socket(t_client *client, int port, in_addr_t addr)
 	return (0);
 }
 
-int			accept_socket(t_client *client, struct sockaddr_in *s_client)
+int		accept_socket(t_client *client, struct sockaddr_in *s_client)
 {
 	int		client_fd = 0;
 	socklen_t	s_size;

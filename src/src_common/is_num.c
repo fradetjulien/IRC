@@ -7,15 +7,14 @@
 
 #include "common.h"
 
-int		is_numbis(char *host)
+int		is_numbis(char *h)
 {
 	int	i = 0;
 
-	if (host == NULL)
+	if (h == NULL)
 		return (-1);
-	while (host && host[i] != '\0') {
-		if ((host[i] < 48 || host[i] > 57) &&
-		    host[i] != '.')
+	while (h && h[i] != '\0') {
+		if ((h[i] < 48 || h[i] > 57) &&	(h[i] != '.'))
 			return (-1);
 		i++;
 	}
@@ -29,8 +28,7 @@ int		is_num(char *port)
 	if (port == NULL)
 		return (-1);
 	while (port && port[i] != '\0') {
-		if (port[i] < 48 ||
-		    port[i] > 57)
+		if (port[i] < 48 || port[i] > 57)
 			return (-1);
 		i++;
 	}

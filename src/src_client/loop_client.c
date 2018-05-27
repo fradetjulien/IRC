@@ -58,7 +58,8 @@ int			loop_client(t_client *client)
 	while (1) {
 		set_fd_client(client);
 		line = get_next_line(0);
-		if ((select(client->fd + 1, &client->read, &client->write, NULL, NULL)) == -1) {
+		if ((select(client->fd + 1, &client->read,
+		&client->write, NULL, NULL)) == -1) {
 			printf("Select error\n");
 			return (-1);
 		}

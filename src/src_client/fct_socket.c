@@ -24,7 +24,7 @@ int		bind_socket(t_client *client)
 	int	error = 0;
 
 	error = bind(client->fd, (const struct sockaddr *)&client->s,
-		     sizeof(client->s));
+	sizeof(client->s));
 	if (error == -1) {
 		close_socket(client);
 		return (-1);

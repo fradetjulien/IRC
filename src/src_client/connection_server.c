@@ -13,7 +13,7 @@ int		check_arguments(char *IP, char *port, t_client *client)
 	int	p = 0;
 
 	if ((IP != NULL && is_numbis(IP) == 0) &&
-	    (port != NULL && is_num(port) == 0)) {
+	(port != NULL && is_num(port) == 0)) {
 		client->IP = strdup(IP);
 		if (client->IP == NULL) {
 			return (-1);

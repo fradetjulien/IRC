@@ -14,24 +14,19 @@ int			select_c(const int fd, char *str)
 	static int	i = 0;
 
 	if (i >= nbr || i == 0)
-	{
-		i = 0;
 		if ((nbr = read(fd, buffer, READ_SIZE)) <= 0)
 			return (0);
-	}
-	if (nbr == 0)
-	{
+	if (nbr == 0) {
 		*str = '\0';
 		i = -1;
 	}
 	else
-		if (buffer[i] == '\n')
-			*str = '\0';
-		else
-		{
-			*str = buffer[i];
-			*(str + 1) = 0;
-		}
+	if (buffer[i] == '\n')
+		*str = '\0';
+	else {
+		*str = buffer[i];
+		*(str + 1) = 0;
+	}
 	i++;
 	return (nbr);
 }
@@ -58,10 +53,7 @@ char		*get_next_line(const int fd)
 	int	nbr = 1;
 	int	i = 0;
 
-	if (str == NULL)
-		return (NULL);
-	nbr = select_c(fd, &str[i]);
-	if (nbr == 0) {
+	if (str == NULL || (nbr = select_c(fd, &str[i])) == 0) {
 		free(str);
 		return (NULL);
 	}

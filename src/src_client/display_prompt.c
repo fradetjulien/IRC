@@ -7,7 +7,7 @@
 
 #include "client.h"
 
-void		display_prompt()
+void		display_prompt(void)
 {
 	write(1, "#", 1);
 }
