@@ -35,8 +35,8 @@ typedef struct			s_client
 	char			*port;
 	char			*host;
 	char			*answer;
-	fd_set			*read;
-	fd_set			*write;
+	fd_set			read;
+	fd_set			write;
 	t_socket		*socket;
 }t_client;
 
@@ -48,7 +48,7 @@ void				display_command(void);
 
 /* Handle FD_SET */
 void		init_fds(int fd, fd_set *r, fd_set *w, struct timeval *t);
-int				check_fds(t_client *NewClient);
+int				check_fds(t_client *NewClient, int fd_max);
 
 /* Handle Server */
 int				wait_connection(t_client *Newclient);

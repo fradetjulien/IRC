@@ -15,7 +15,8 @@ NAME_CLIENT		= ../zappy_ai
 
 SRC_CLIENT		=	handle_client/client.c 			\
 				handle_client/init_client.c 		\
-				handle_client/help_client.c
+				handle_client/help_client.c		\
+				handle_client/launch_client.c
 
 OBJ_CLIENT	     = $(SRC_CLIENT:.c=.o)
 
