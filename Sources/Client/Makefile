@@ -23,6 +23,8 @@ SRC_CLIENT		=	handle_client/client.c 			\
 				handle_socket/close_socket.c		\
 				handle_socket/init_socket.c		\
 				handle_socket/connect_socket.c		\
+				handle_fdset/init_fds.c			\
+				handle_fdset/check_fds.c		\
 				handle_arguments/is_writearguments.c	\
 				handle_arguments/is_hostname.c		\
 				handle_arguments/is_port.c		\
