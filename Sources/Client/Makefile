@@ -18,6 +18,7 @@ SRC_CLIENT		=	handle_client/client.c 			\
 				handle_client/help_client.c		\
 				handle_client/launch_client.c		\
 				handle_server/wait_connection.c		\
+				handle_instructions/read_instruction.c	\
 				../Common/library/str_to_wordtab.c	\
 				../Common/library/get_next_line.c	\
 				../Common/library/epur_str.c
