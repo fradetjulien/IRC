@@ -5,7 +5,7 @@
 ** client.c
 */
 
-#include "Client.h"
+#include "../../../Includes/client.h"
 
 int			main(int ac, char **av)
 {
@@ -17,6 +17,6 @@ int			main(int ac, char **av)
 	}
 	if (init_client(&Newclient) == -1)
 		return (-1);
-	launch_client(Newclient);
+	launch_client(&Newclient);
 	return (0);
 }
