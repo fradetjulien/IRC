@@ -50,6 +50,11 @@ void				display_command(void);
 void		init_fds(int fd, fd_set *r, fd_set *w, struct timeval *t);
 int				check_fds(t_client *NewClient, int fd_max);
 
+/* Handle Socket */
+int		init_socket(t_client *Newclient, const char *protocol);
+int		close_socket(t_client *Newclient);
+int		connect_socket(t_client *Newclient);
+
 /* Handle Server */
 int				wait_connection(t_client *Newclient);
 int				connection_server(t_client *Newclient);
