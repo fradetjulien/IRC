@@ -17,5 +17,7 @@
 char		**str_to_wordtab(char *str, char delimitor);
 char		*get_next_line(const int fd);
 char		*epur_str(char *str);
+int		my_putstr(char *str);
+int		my_putchar(char c);
 
 #endif /* !LIBRARY_H_ */

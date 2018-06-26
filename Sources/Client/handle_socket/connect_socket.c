@@ -9,16 +9,13 @@
 
 int		connect_socket(t_client *Newclient)
 {
-	int	error = 0;
-
 	Newclient->socket->s.sin_family = AF_INET;
 	Newclient->socket->s.sin_addr.s_addr = inet_addr(Newclient->host);
 	Newclient->socket->s.sin_port = htons(atoi(Newclient->port));
-	error = connect(Newclient->socket->fd,
+	if (connect(Newclient->socket->fd,
 	(const struct sockaddr *)&Newclient->socket->s,
-	sizeof(Newclient->socket->s));
-	if (error == -1) {
-		dprintf(2, "Can not establish connection\n");
+	sizeof(Newclient->socket->s))  == SOCKET_ERROR) {
+		write(2, "Can not establish connection\n", 30);
 		close_socket(Newclient);
 		return (-1);
 	}

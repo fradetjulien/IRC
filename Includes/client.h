@@ -20,6 +20,8 @@
 #include <arpa/inet.h>
 
 # define LOCALHOST	"127.0.0.1"
+# define BUFF_SIZE	(4096)
+# define SOCKET_ERROR	(-1)
 
 typedef struct			s_socket
 {
@@ -41,14 +43,15 @@ typedef struct			s_client
 }t_client;
 
 /* Handle Client */
-int				init_client(t_client *Newclient);
-int				launch_client(t_client *Newclient);
-void				help_client(char *binary);
-void				display_command(void);
+int		init_client(t_client *Newclient);
+int		launch_client(t_client *Newclient);
+int		delete_client(t_client *Exclient);
+void		help_client(char *binary);
+void		display_command(void);
 
 /* Handle FD_SET */
 void		init_fds(int fd, fd_set *r, fd_set *w, struct timeval *t);
-int				check_fds(t_client *NewClient, int fd_max);
+int		check_fds(t_client *NewClient, int fd_max);
 
 /* Handle Socket */
 int		init_socket(t_client *Newclient, const char *protocol);
@@ -56,15 +59,15 @@ int		close_socket(t_client *Newclient);
 int		connect_socket(t_client *Newclient);
 
 /* Handle Server */
-int				wait_connection(t_client *Newclient);
-int				connection_server(t_client *Newclient);
+int		wait_connection(t_client *Newclient);
+int		connection_server(t_client *Newclient);
 
 /* Handle Instructions */
-int				read_instruction(int fd, t_client *Newclient);
+int		read_instruction(int fd, t_client *Newclient);
 
 /* Handle Arguments */
-int				is_writearguments(t_client *Newclient);
-int				is_hostname(char *host);
-int				is_port(char *port);
+int		is_writearguments(t_client *Newclient);
+int		is_hostname(char *host);
+int		is_port(char *port);
 
 #endif /* !CLIENT_H_ */

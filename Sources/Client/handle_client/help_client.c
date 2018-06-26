@@ -6,8 +6,11 @@
 */
 
 #include "../../../Includes/client.h"
+#include "../../../Includes/library.h"
 
 void		help_client(char *binary)
 {
-	dprintf(1, "USAGE : %s\n", binary);
+	write(1, "USAGE : ", 8);
+	my_putstr(binary);
+	write(1, "\n", 2);
 }

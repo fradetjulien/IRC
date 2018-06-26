@@ -13,17 +13,20 @@ int			launch_client(t_client *Newclient)
 	int		launcher = 1;
 	int		fd_max = Newclient->socket->fd + 1;
 
-	wait_connection(Newclient);
+	if (wait_connection(Newclient) == -1)
+		return (-1);
 	while (launcher) {
 		init_fds(Newclient->socket->fd, &Newclient->read,
 		&Newclient->write, &time);
 		if (select(fd_max, &Newclient->read,
 		&Newclient->write, NULL, &time) == -1) {
-			dprintf(2, "Select error\n");
+			write(2, "Select error\n", 14);
 			return (-1);
 		}
 		if (check_fds(Newclient, fd_max) == -1)
 			return (-1);
 	}
+	if (close_socket(Newclient) == -1)
+		return (-1);
 	return (0);
 }

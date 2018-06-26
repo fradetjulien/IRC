@@ -13,7 +13,7 @@ int		wait_connection(t_client *Newclient)
 
 	while (Newclient->socket->fd == -1) {
 		if (read_instruction(0, Newclient) == -1) {
-			dprintf(2, "Can't read on this fd\n");
+			write(2, "Can't read on this fd\n", 23);
 			return (-1);
 		}
 		error = is_writearguments(Newclient);
