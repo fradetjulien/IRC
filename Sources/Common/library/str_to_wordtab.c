@@ -56,7 +56,7 @@ char			**str_to_wordtab(char *str, char delimitor)
 	int		p = 0;
 	int		len;
 
-	if (tab == NULL)
+	if (tab == NULL || str == NULL)
 		return (NULL);
 	while (i < nb_words && (k = 0) == 0) {
 		len = len_str(str, p, delimitor);

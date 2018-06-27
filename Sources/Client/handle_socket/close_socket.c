@@ -14,5 +14,6 @@ int		close_socket(t_client *Newclient)
 		return (-1);
 	}
 	Newclient->socket->fd = -1;
+	Newclient->connected = false;
 	return (0);
 }

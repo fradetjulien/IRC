@@ -7,12 +7,18 @@
 
 #include "../../../Includes/client.h"
 
-int		check_fds(t_client *Newclient, int fd_max)
+int		check_fds(t_client *Newclient)
 {
-	for (int i = 0; i <= fd_max; i++) {
-		if (FD_ISSET(i, &Newclient->read)) {
-			read_instruction(i, Newclient);
-		}
+	int	error = 0;
+
+	if (FD_ISSET(0, &Newclient->read) == true) {
+		read_instruction(0, Newclient);
+		error = parse_instruction(Newclient);
 	}
-	return (0);
+	if (FD_ISSET(Newclient->socket->fd, &Newclient->read) == true &&
+	error == 0) {
+		read_instruction(Newclient->socket->fd, Newclient);
+		error = send_instruction(Newclient, 0);
+	}
+	return (error);
 }

@@ -19,4 +19,5 @@ void		init_fds(int fd, fd_set *read, fd_set *write, struct timeval *t)
 	FD_SET(fd, write);
 	t->tv_sec = 0;
 	t->tv_usec = 5000;
+	prompt();
 }

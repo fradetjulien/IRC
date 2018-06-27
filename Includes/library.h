@@ -19,5 +19,8 @@ char		*get_next_line(const int fd);
 char		*epur_str(char *str);
 int		my_putstr(char *str);
 int		my_putchar(char c);
+int		is_num(char c);
+int		is_caract(char c);
+int		is_special(char c);
 
 #endif /* !LIBRARY_H_ */

@@ -12,6 +12,7 @@ int		init_client(t_client *Newclient)
 	Newclient->socket = malloc(sizeof(t_socket));
 	if (Newclient->socket == NULL)
 		return (-1);
+	Newclient->connected = false;
 	Newclient->socket->fd = -1;
 	Newclient->protocol = NULL;
 	Newclient->port = NULL;
