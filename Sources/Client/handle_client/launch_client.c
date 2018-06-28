@@ -23,8 +23,9 @@ int			launch_client(t_client *Newclient)
 			write(2, "Select error\n", 14);
 			return (-1);
 		}
-		if (check_fds(Newclient) == -1)
+		if (check_fds(Newclient) == -1) {
 			return (-1);
+		}
 	}
 	if (close_socket(Newclient) == -1)
 		return (-1);

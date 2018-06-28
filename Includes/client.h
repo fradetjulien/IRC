@@ -48,8 +48,8 @@ typedef struct			s_client
 
 typedef struct			s_instructions
 {
-	char			*real_instruct[10];
-	int			(*_instruct[10])(t_client *Newclient);
+	char			*real_instruct[11];
+	int			(*_instruct[11])(t_client *Newclient);
 }t_instructions;
 
 /* Handle Client */
@@ -86,6 +86,8 @@ int		is_channel(t_client *Newclient);
 int		list_channel(t_client *Newclient);
 int		is_connected(t_client *Newclient);
 int		send_msg(t_client *Newclient);
+int		channel_message(t_client *Newclient);
+int		quit(t_client *client);
 
 /* Is this a real Instruction ? */
 bool		is_nickname(char *nickname);
@@ -95,5 +97,6 @@ bool		is_achannel(char *channel);
 int		is_writearguments(t_client *Newclient);
 int		is_hostname(char *host);
 int		is_port(char *port);
+int		counter_args(char **command);
 
 #endif /* !CLIENT_H_ */

@@ -9,11 +9,13 @@
 
 int		close_socket(t_client *Newclient)
 {
-	if (close(Newclient->socket->fd) == -1) {
-		write(2, "Can't close the socket\n", 25);
-		return (-1);
+	if (Newclient->connected == true) {
+		if (close(Newclient->socket->fd) == -1) {
+			write(2, "Can't close the socket\n", 25);
+			return (-1);
+		}
+		Newclient->socket->fd = -1;
+		Newclient->connected = false;
 	}
-	Newclient->socket->fd = -1;
-	Newclient->connected = false;
 	return (0);
 }

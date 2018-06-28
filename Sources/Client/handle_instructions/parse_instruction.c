@@ -14,8 +14,9 @@ int			parse_instruction(t_client *Newclient)
 
 	init_instructions(&instruct);
 	is_real = find_instruction(Newclient, &instruct);
-	if (is_real == -1)
+	if (is_real == -1) {
 		return (-1);
+	}
 	instruct._instruct[is_real](Newclient);
 	return (0);
 }

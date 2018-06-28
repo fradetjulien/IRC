@@ -18,5 +18,8 @@ int		is_writearguments(t_client *Newclient)
 		if (Newclient->host != NULL && Newclient->port != NULL)
 			return (0);
 	}
+	else if (strcmp(Newclient->command[0], "exit") == 0) {
+		return (1);
+	}
 	return (-1);
 }

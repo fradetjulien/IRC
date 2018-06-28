@@ -30,6 +30,8 @@ int		wait_connection(t_client *Newclient)
 			error = is_writearguments(Newclient);
 			if (error == 0)
 				error = connection_server(Newclient);
+			else if (error == 1)
+				quit(Newclient);
 			else
 				display_connection();
 		}

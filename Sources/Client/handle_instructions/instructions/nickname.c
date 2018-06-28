@@ -27,10 +27,12 @@ bool		is_nickname(char *nickname)
 int		nickname(t_client *Newclient)
 {
 	int	error = 0;
+	int	nb_args = counter_args(Newclient->command);
 
-	if (is_nickname(Newclient->command[1]) == false) {
+	if (nb_args != 2 ||
+	is_nickname(Newclient->command[1]) == false) {
 		write(2, "Invalid Nickname\n", 18);
-		return (-1);
+		return (1);
 	}
 	error = send_instruction(Newclient, Newclient->socket->fd);
 	if (error == -1)
