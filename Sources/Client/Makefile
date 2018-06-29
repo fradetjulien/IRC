@@ -11,7 +11,7 @@ RM			= rm -f
 
 CFLAGS			+= -Wextra -Wall -I ../Includes/
 
-NAME_CLIENT		= ../client
+NAME_CLIENT		= ../../client
 
 SRC_CLIENT		=	handle_client/client.c 					\
 				handle_client/init_client.c 				\

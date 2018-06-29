@@ -11,7 +11,7 @@ RM			= rm -f
 
 CFLAGS			+= -Wextra -Wall -I ../Includes/
 
-NAME_SERVER		= ../server
+NAME_SERVER		= ../../server
 
 SRC_SERVER		=	handle_server/server.c 					\
 				handle_server/init_server.c				\
