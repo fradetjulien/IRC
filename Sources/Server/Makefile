@@ -16,10 +16,13 @@ NAME_SERVER		= ../server
 SRC_SERVER		=	handle_server/server.c 					\
 				handle_server/init_server.c				\
 				handle_server/help_server.c				\
+				handle_server/launch_server.c				\
 				handle_socket/init_socket.c				\
 				handle_socket/bind_socket.c				\
 				handle_socket/listen_socket.c				\
 				handle_socket/close_socket.c				\
+				handle_fdset/init_fds.c					\
+				handle_fdset/check_fds.c				\
 				../Common/is_port.c					\
 				../Common/library/str_to_wordtab.c			\
 				../Common/library/get_next_line.c			\
@@ -28,7 +31,9 @@ SRC_SERVER		=	handle_server/server.c 					\
 				../Common/library/my_putstr.c				\
 				../Common/library/is_num.c				\
 				../Common/library/is_caract.c				\
-				../Common/library/is_special.c
+				../Common/library/is_special.c				\
+				../Common/linked_list/init_list.c			\
+				../Common/linked_list/delete_list.c
 
 OBJ_SERVER		= $(SRC_SERVER:.c=.o)
 
