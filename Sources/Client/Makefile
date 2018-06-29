@@ -42,7 +42,7 @@ SRC_CLIENT		=	handle_client/client.c 					\
 				handle_arguments/is_hostname.c				\
 				handle_arguments/prompt.c				\
 				handle_arguments/counter_args.c				\
-				handle_arguments/is_port.c				\
+				../Common/is_port.c					\
 				../Common/library/str_to_wordtab.c			\
 				../Common/library/get_next_line.c			\
 				../Common/library/epur_str.c				\
