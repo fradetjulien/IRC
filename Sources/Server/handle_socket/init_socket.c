@@ -20,5 +20,6 @@ int		init_socket(t_server *myserver, const char *protocol)
 		write(2, "Can not create a socket\n", 25);
 		return (-1);
 	}
+	myserver->socket->fd_max = myserver->socket->fd + 1;
 	return (0);
 }

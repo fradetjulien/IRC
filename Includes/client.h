@@ -48,8 +48,8 @@ typedef struct			s_client
 
 typedef struct			s_instructions
 {
-	char			*real_instruct[11];
-	int			(*_instruct[11])(t_client *Newclient);
+	char			*real_instruct[12];
+	int			(*_instruct[12])(t_client *Newclient);
 }t_instructions;
 
 /* Handle Client */

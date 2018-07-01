@@ -12,12 +12,12 @@ int		find_instruction(t_client *Newclient, t_instructions *ptr)
 	int	i = 0;
 
 	while ((strcmp(ptr->real_instruct[i], Newclient->command[0]) != 0) &&
-	i < 11) {
+	i < 12) {
 		i++;
 	}
 	if (strncmp(ptr->real_instruct[9], Newclient->command[0], 1) == 0)
 		return (9);
-	else if (i > 10)
+	else if (i > 11)
 		return (-1);
 	return (i);
 }

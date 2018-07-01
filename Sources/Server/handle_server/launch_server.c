@@ -9,14 +9,10 @@
 
 int		launch_server(t_server *myserver)
 {
-	int	fd_max = myserver->socket->fd + 1;
-
-	if (fd_max == -1)
-		return (-1);
 	while (myserver->alive == true) {
 		init_fds(myserver);
-		if (select(fd_max, &myserver->read,
-		&myserver->write, NULL, myserver->time) == -1) {
+		if (select(myserver->socket->fd_max, &myserver->read,
+		&myserver->write, NULL, &myserver->time) == -1) {
 			write(2, "Select error\n", 15);
 			return (-1);
 		}

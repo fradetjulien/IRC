@@ -20,7 +20,8 @@ void		following_init(t_instructions *ptr)
 	ptr->_instruct[8] = &nickname;
 	ptr->_instruct[9] = &channel_message;
 	ptr->_instruct[10] = &close_socket;
-	ptr->_instruct[11] = NULL;
+	ptr->_instruct[11] = &quit;
+	ptr->_instruct[12] = NULL;
 }
 
 void		init_instructions(t_instructions *ptr)
@@ -36,6 +37,7 @@ void		init_instructions(t_instructions *ptr)
 	ptr->real_instruct[8] = "/accept_file";
 	ptr->real_instruct[9] = "$";
 	ptr->real_instruct[10] = "/quit";
-	ptr->real_instruct[11] = NULL;
+	ptr->real_instruct[11] = "exit";
+	ptr->real_instruct[12] = NULL;
 	following_init(ptr);
 }
