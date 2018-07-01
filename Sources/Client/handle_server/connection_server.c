@@ -19,6 +19,7 @@ int		connection_server(t_client *Newclient)
 			return (-1);
 		if (connect_socket(Newclient) == -1)
 			return (-1);
+		write(0, "Connection established\n", 25);
 		Newclient->connected = true;
 	}
 	else {

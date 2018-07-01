@@ -13,7 +13,7 @@ int		launch_server(t_server *myserver)
 		init_fds(myserver);
 		if (select(myserver->socket->fd_max, &myserver->read,
 		&myserver->write, NULL, &myserver->time) == -1) {
-			write(2, "Select error\n", 15);
+			write(2, "Select error\n", 13);
 			return (-1);
 		}
 		if (check_fds(myserver) == -1)

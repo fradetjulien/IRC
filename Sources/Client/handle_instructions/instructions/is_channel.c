@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** PSU_myirc_2017
 ** File description:
-** join_channel.c
+** is_channel.c
 */
 
 #include "../../../../Includes/client.h"
@@ -14,11 +14,12 @@ bool		is_achannel(char *channel)
 
 	if (strlen(channel) > LEN_CHANNEL)
 		return (false);
-	while (channel && channel[i] != '\0') {
-		if (is_caract(channel[i]) != 1 &&
-		is_num(channel[i]) != 1 && channel[i] != '&'
-		&& channel[i] != '#' && channel[i] != ',')
+	while ((channel) && (channel[i] != '\0')) {
+		if ((is_caract(channel[i]) != 1) && (is_num(channel[i]) != 1) &&
+		(channel[i] != '&') && (channel[i] != '#') &&
+		(channel[i] != ',')) {
 			return (false);
+		}
 		i++;
 	}
 	return (true);

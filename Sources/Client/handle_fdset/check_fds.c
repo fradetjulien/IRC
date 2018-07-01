@@ -6,14 +6,15 @@
 */
 
 #include "../../../Includes/client.h"
+#include "../../../Includes/library.h"
 
 int		is_welcome(char *str)
 {
-	if (strcmp(str, "Welcome\n") == 0)
+	if (strcmp(str, "Welcome\n") == 0) {
 		my_putstr(str);
+	}
 	return (0);
 }
-
 
 int		check_fds(t_client *Newclient)
 {
@@ -26,12 +27,12 @@ int		check_fds(t_client *Newclient)
 		else if (error == 0)
 			parse_instruction(Newclient);
 	}
-	if (FD_ISSET(Newclient->socket->fd, &Newclient->read) == true) {
-		error = read_instruction(Newclient->socket->fd, Newclient);
+	if (FD_ISSET(Newclient->socket->fd, &Newclient->read) == true &&
+	Newclient->connected == true) {
+		error = read_instruction(Newclient->socket->fd + 1, Newclient);
 		is_welcome(Newclient->answer);
 		if (error != 0)
-			return (-1);
-		//error = send_instruction(Newclient, 0);
-		}
+			return (1);
+	}
 	return (error);
 }

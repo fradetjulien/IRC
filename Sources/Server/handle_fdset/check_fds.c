@@ -6,6 +6,7 @@
 */
 
 #include "../../../Includes/server.h"
+#include "../../../Includes/library.h"
 
 int		check_fds(t_server *myserver)
 {
@@ -17,6 +18,10 @@ int		check_fds(t_server *myserver)
 		error = socket_client(myserver);
 		if (error == -1)
 			return (-1);
+		error = read_instruction(myserver->socket->fd, myserver);
+		if (error != 0)
+			return (1);
+		parse_instruction(myserver);
 	}
 	return (0);
 }

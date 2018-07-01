@@ -25,6 +25,12 @@ SRC_SERVER		=	handle_server/server.c 					\
 				handle_fdset/check_fds.c				\
 				handle_clients/init_client.c				\
 				handle_clients/socket_client.c				\
+				handle_instructions/read_instruction.c			\
+				handle_instructions/parse_instructions.c		\
+				handle_instructions/init_instructions.c			\
+				handle_instructions/find_instruction.c			\
+				handle_instructions/send_instruction.c			\
+				handle_instructions/instructions/delete_client.c	\
 				../Common/is_port.c					\
 				../Common/library/str_to_wordtab.c			\
 				../Common/library/get_next_line.c			\

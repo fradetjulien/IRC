@@ -87,6 +87,7 @@ int		list_channel(t_client *Newclient);
 int		is_connected(t_client *Newclient);
 int		send_msg(t_client *Newclient);
 int		channel_message(t_client *Newclient);
+int		quit_server(t_client *Newclient);
 int		quit(t_client *client);
 
 /* Is this a real Instruction ? */

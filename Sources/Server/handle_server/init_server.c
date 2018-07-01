@@ -16,8 +16,7 @@ int		init_server(t_server *myserver, const char *port)
 	myserver->port = atoi(port);
 	myserver->clients = init_list();
 	myserver->channel = init_list();
-	if (myserver->clients == NULL ||
-	myserver->channel == NULL)
+	if (myserver->clients == NULL || myserver->channel == NULL)
 		return (-1);
 	if (init_socket(myserver, "TCP") == -1)
 		return (-1);

@@ -52,10 +52,18 @@ typedef struct			s_server
 	int			nb_client;
 	t_client		*client;
 	int			pos;
+	char			*received;
+	char			**command;
 	t_list			*clients;
 	t_list			*channel;
 	t_socket		*socket;
 }t_server;
+
+typedef struct			s_instructions
+{
+	char			*real_instruct[12];
+	int			(*_instruct[12])(t_server *myserver);
+}t_instructions;
 
 /* Handle Server */
 int		init_server(t_server *myserver, const char *port);
@@ -75,6 +83,17 @@ int		socket_client(t_server *server);
 /* Handle Fd Set */
 void		init_fds(t_server *server);
 int		check_fds(t_server *myserver);
+
+/* Handle Instruction */
+void		init_instructions(t_instructions *ptr);
+int		read_instruction(int fd, t_server *myserver);
+int		send_instruction(t_server *myserver, int fd);
+int		parse_instruction(t_server *myserver);
+int		find_instruction(t_server *myserver, t_instructions *ptr);
+
+/* Instructions */
+int		delete_client(t_server *myserver);
+int		print_yo(t_server *myserver);
 
 /* Handle Arguments */
 int		is_port(char *port);

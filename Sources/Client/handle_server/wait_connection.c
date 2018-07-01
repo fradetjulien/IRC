@@ -15,6 +15,19 @@ void		display_connection(void)
 	"\t/server $host[:$port]\n");
 }
 
+void		according_to(int error, t_client *Newclient)
+{
+	if (error == 0) {
+		error = connection_server(Newclient);
+	}
+	else if (error == 1) {
+		quit(Newclient);
+	}
+	else {
+		display_connection();
+	}
+}
+
 int		wait_connection(t_client *Newclient)
 {
 	int	error = 0;
@@ -28,12 +41,7 @@ int		wait_connection(t_client *Newclient)
 		}
 		else if (error == 0) {
 			error = is_writearguments(Newclient);
-			if (error == 0)
-				error = connection_server(Newclient);
-			else if (error == 1)
-				quit(Newclient);
-			else
-				display_connection();
+			according_to(error, Newclient);
 		}
 	}
 	return (error);

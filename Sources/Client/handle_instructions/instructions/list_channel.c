@@ -15,10 +15,12 @@ bool		ischannel(char *channel)
 	if (strlen(channel) > LEN_CHANNEL)
 		return (false);
 	while (channel && channel[i] != '\0') {
-		if (is_caract(channel[i]) != 1 &&
-		is_num(channel[i]) != 1 &&
-		channel[i] != '#' && channel[i] != ',')
+		if ((is_caract(channel[i]) != 1) &&
+		(is_num(channel[i]) != 1) &&
+		(channel[i] != '#') &&
+		(channel[i] != ',')) {
 			return (false);
+		}
 		i++;
 	}
 	return (true);

@@ -16,6 +16,7 @@ int		close_socket(t_client *Newclient)
 		}
 		Newclient->socket->fd = -1;
 		Newclient->connected = false;
+		write(0, "Successfully disconnected\n", 27);
 	}
 	return (0);
 }

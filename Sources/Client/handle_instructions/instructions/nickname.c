@@ -15,10 +15,11 @@ bool		is_nickname(char *nickname)
 	if (strlen(nickname) > LEN_NICKNAME)
 		return (false);
 	while (nickname && nickname[i] != '\0') {
-		if (is_num(nickname[i]) != 1 &&
-		    is_caract(nickname[i]) != 1 &&
-		    is_special(nickname[i]) != 1)
+		if ((is_num(nickname[i]) != 1) &&
+		(is_caract(nickname[i]) != 1) &&
+		(is_special(nickname[i]) != 1)) {
 			return (false);
+		}
 		i++;
 	}
 	return (true);

@@ -19,7 +19,7 @@ void		following_init(t_instructions *ptr)
 	ptr->_instruct[7] = &send_msg;
 	ptr->_instruct[8] = &nickname;
 	ptr->_instruct[9] = &channel_message;
-	ptr->_instruct[10] = &close_socket;
+	ptr->_instruct[10] = &quit_server;
 	ptr->_instruct[11] = &quit;
 	ptr->_instruct[12] = NULL;
 }
